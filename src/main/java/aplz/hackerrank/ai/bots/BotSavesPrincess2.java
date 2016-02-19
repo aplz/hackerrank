@@ -1,25 +1,30 @@
-package aplz.hackerrank.bots;
+package aplz.hackerrank.ai.bots;
 
 import java.util.Scanner;
 
-public class BotSavesPrincess {
+public class BotSavesPrincess2 {
 
     static String input = "5\n" +
-            "----p\n" +
-            "-----\n" +
+            "1 2\n" +
+            "p----\n" +
             "--m--\n" +
+            "-----\n" +
             "-----\n" +
             "-----";
 
     public static void main(String[] args) {
         Scanner in = new Scanner(input);
-        int m= in.nextInt();
-        String grid[] = new String[m];
-        for (int i = 0; i < m; i++) {
+        int n, r, c;
+        n = in.nextInt();
+        r = in.nextInt();
+        c = in.nextInt();
+        in.useDelimiter("\n");
+        String grid[] = new String[n];
+
+        for (int i = 0; i < n; i++) {
             grid[i] = in.next();
         }
-
-        displayPathtoPrincess(m, grid);
+        displayPathtoPrincess(n, r, c, grid);
     }
 
     private static int[] findPrincess(String[][] grid) {
@@ -54,10 +59,7 @@ public class BotSavesPrincess {
     }
 
 
-    private static void displayPathtoPrincess(int n, String[] gridIn) {
-
-        int botRow = (int) Math.ceil((n - 1.) / 2);
-        int botCol = (int) Math.ceil((n - 1.) / 2);
+    private static void displayPathtoPrincess(int n, int botRow, int botCol, String[] gridIn) {
 
         String[][] grid = new String[gridIn.length][];
         for (int i = 0; i < gridIn.length; i++) {

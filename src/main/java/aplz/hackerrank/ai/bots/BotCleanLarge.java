@@ -1,37 +1,39 @@
-package aplz.hackerrank.bots;
+package aplz.hackerrank.ai.bots;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
- * Created by Anja on 10.02.2016.
- */
-public class BotClean {
 
-    static String input = "0 1\n" +
-            "-b--d\n" +
-            "-d--d\n" +
-            "--dd-\n" +
-            "--d--\n" +
-            "----d";
+public class BotCleanLarge {
+
+    static String input = "0 0\n" +
+            "5 6\n" +
+            "b---d-\n" +
+            "-d--d-\n" +
+            "--dd--\n" +
+            "--d---\n" +
+            "----d-";
+    public static void main(String[] args) {
+        // use System.in in active setting.
+        Scanner in = new Scanner(input);
+        int [] pos = new int[2];
+        int [] dim = new int[2];
+        for(int i=0;i<2;i++) pos[i] = in.nextInt();
+        for(int i=0;i<2;i++) dim[i] = in.nextInt();
+        String board[] = new String[dim[0]];
+        for(int i=0;i<dim[0];i++) board[i] = in.next();
+        next_move(pos[0], pos[1], dim[0], dim[1], board);
+    }
+
+
     private static List<int[]> dirts;
     private static int selected_dirt_idx = -1;
-
-
-    public static void main(String[] args) {
-        Scanner in = new Scanner(input);
-        int[] pos = new int[2];
-        String board[] = new String[5];
-        for (int i = 0; i < 2; i++) pos[i] = in.nextInt();
-        for (int i = 0; i < 5; i++) board[i] = in.next();
-        nextMove(pos[0], pos[1], board);
-    }
 
     private static void findAllDirts(String[][] grid) {
         dirts = new ArrayList<int[]>();
         for (int i = 0; i < grid.length; i++) {
-            for (int j = 0; j < grid.length; j++) {
+            for (int j = 0; j < grid[i].length; j++) {
                 if (grid[i][j].equalsIgnoreCase("d")) {
                     dirts.add(new int[]{i, j});
                 }
@@ -86,12 +88,12 @@ public class BotClean {
     }
 
 
-    private static void nextMove(int botRow, int botCol, String[] gridIn) {
+    private static void next_move(int botRow, int botCol, int height, int width, String[] gridIn) {
 
-        String[][] grid = new String[gridIn.length][];
-        for (int i = 0; i < gridIn.length; i++) {
+        String[][] grid = new String[height][];
+        for (int i = 0; i < height; i++) {
             char[] chars = gridIn[i].toCharArray();
-            grid[i] = new String[gridIn.length];
+            grid[i] = new String[width];
             for (int j = 0; j < chars.length; j++) {
                 grid[i][j] = String.valueOf(chars[j]);
             }
@@ -105,5 +107,4 @@ public class BotClean {
             botCol = nextPosition[1];
         }
     }
-
 }
