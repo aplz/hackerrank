@@ -1,4 +1,4 @@
-package aplz.hackerrank.java;
+package aplz.hackerrank.java.bignumber;
 
 import java.math.BigDecimal;
 import java.util.Scanner;
